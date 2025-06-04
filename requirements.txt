@@ -1,4 +1,0 @@
-# generated from manifests external_dependencies
-PyJWT
-num2words>=0.5.8
-python-dateutil
