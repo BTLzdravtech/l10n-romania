@@ -8,7 +8,7 @@ on:
 jobs:
   sync:
 
-    runs-on: [ubuntu-latest]
+    runs-on: [self-hosted, linux, x64, btl]
 
     steps:
       - uses: tgymnich/fork-sync@v1.3
