@@ -56,6 +56,14 @@ class L10nRoMixin(models.AbstractModel):
             for field in doc.xpath('//group[contains(@id,"l10n_ro")]'):
                 field.set("invisible", "True")
 
+            # Hiding the fields is not enough: the wrapper div and the notebook
+            # page holding them keep their slot in the group grid, which shifts
+            # every label rendered after them and leaves an empty tab behind.
+            for node in doc.xpath(
+                '//div[contains(@id,"l10n_ro")] | //page[contains(@name,"l10n_ro")]'
+            ):
+                node.set("invisible", "True")
+
             self._l10n_ro_hide_buttons(doc)
             result["arch"] = etree.tostring(doc)
 
