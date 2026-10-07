@@ -56,11 +56,14 @@ class L10nRoMixin(models.AbstractModel):
             for field in doc.xpath('//group[contains(@id,"l10n_ro")]'):
                 field.set("invisible", "True")
 
-            # Hiding the fields is not enough: the wrapper div and the notebook
-            # page holding them keep their slot in the group grid, which shifts
-            # every label rendered after them and leaves an empty tab behind.
+            # Hiding the fields is not enough: the wrapper div, the standalone
+            # label in front of it and the notebook page holding them keep their
+            # slot in the group grid, which shifts every label rendered after
+            # them and leaves an empty tab behind.
             for node in doc.xpath(
-                '//div[contains(@id,"l10n_ro")] | //page[contains(@name,"l10n_ro")]'
+                '//div[contains(@id,"l10n_ro")] '
+                '| //label[contains(@for,"l10n_ro")] '
+                '| //page[contains(@name,"l10n_ro")]'
             ):
                 node.set("invisible", "True")
 
